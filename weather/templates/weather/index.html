@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>What's the weather like?</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .header {
+            background-color: white;
+            padding: 10px 350px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: black;
+        }
+
+        .field {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 20px;
+        }
+
+        .search{
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: auto;
+            background-color: #6c78ff;
+        }
+        .field input {
+            width: 200px;
+            padding: 8px 30px 8px 30px;
+            border-radius: 20px;
+            border: none;
+            font-size: 14px;
+        }
+
+        .control {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-icon{
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            opacity: 20%;
+            margin: 5px;
+        }
+
+        .button{
+
+        }
+
+        .content{
+            margin: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+
+        }
+
+        .box{
+            width: 150px;
+            height: 200px;
+            display: block;
+            margin: 15px;
+            padding: 5px;
+            background-color: white;
+            border-radius: 10px;
+        }
+
+        .menu {
+            display: flex;
+            gap: 15px;
+            color: white;
+            font-size: 14px;
+        }
+
+        .footer{
+            width: auto;
+            height: 70px;
+            background-color: #6c78ff;
+        }
+        .location {
+            padding: 20px;
+            font-size: 18px;
+        }
+        .main{
+            margin: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+        .big-content-box{
+            width: 800px;
+            height: auto;
+            background-color: #6c78ff;
+            display: flex;
+            border-radius: 10px;
+            padding: 10px;
+        }
+
+        </style>
+</head>
+<body>
+    <section class="header">
+        <div class="header-body">
+            <div class="container">
+                <h1 class="title">
+                    Weather today?
+                </h1>
+            </div>
+        </div>
+    </section>
+    <section class="search">
+        <div class="container">
+            <div class="columns">
+                <div class="column">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="field">
+                            <div class="control">
+                                <img class="search-icon" src="https://static-00.iconduck.com/assets.00/search-icon-511x512-r74btiar.png">
+                                {{ form.name }}
+                            </div>
+{#                            <div class="control">#}
+{#                                <button class="button">#}
+{#                                    Add City#}
+{#                                </button>#}
+{#                            </div>#}
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="main">
+        <div class="big-content-box">
+            <div class="list">
+                <div class="content">
+                    {% for weather in weather_data %}
+                    <div class="box">
+                        <article class="media">
+                            <div class="media-left">
+                                <figure class="image is-50x50">
+                                    <img src="http://openweathermap.org/img/w/{{ weather.icon }}.png" alt="Image">
+                                </figure>
+                            </div>
+                            <div class="media-content">
+                                <div class="content">
+                                    <p>
+                                        <span class="title">{{ weather.city }}</span>
+                                        <br>
+                                        <span class="subtitle">{{ weather.temperature }}° F</span>
+                                        <br> {{ weather.description }}
+                                    </p>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    </footer>
+</body>
+</html>
