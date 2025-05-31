@@ -68,4 +68,8 @@ weather_project/
 └── requirements.txt
 ```
 
+Figma Прототип
+
+[Ссылка](https://www.figma.com/proto/FB5DEnamf97JiKGO2I4sXL/Untitled?node-id=0-1&t=VNwLnFsBx5oIMH9S-1)
+
 Для личного использования.
